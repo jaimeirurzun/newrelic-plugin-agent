@@ -19,6 +19,7 @@ NewRelic platform. Currently supported backend systems are:
 - RabbitMQ
 - Redis
 - Riak
+- Varnish
 - uWSGI
 
 IMPORTANT
