@@ -21,9 +21,9 @@ class Varnish(base.Plugin):
         'client_conn': ('Totals/Client/Connections', 'gauge', ''),
         'client_drop': ('Totals/Client/Drops', 'gauge', ''),
         'client_req': ('Totals/Client/Requests', 'gauge', ''),
-        'cache_hit': ('Totals/Cache/Hits', 'gauge', ''),
-        'cache_hitpass': ('Totals/Cache/Hitpasses', 'gauge', ''),
-        'cache_miss': ('Totals/Cache/Misses', 'gauge', ''),
+        'cache_hit': ('Totals/Cache/Hits', 'gauge', 'hits'),
+        'cache_hitpass': ('Totals/Cache/Hitpasses', 'gauge', 'hits'),
+        'cache_miss': ('Totals/Cache/Misses', 'gauge', 'hits'),
     }
 
     def poll(self):
