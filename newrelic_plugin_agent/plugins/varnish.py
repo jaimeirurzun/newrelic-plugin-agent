@@ -18,12 +18,12 @@ class Varnish(base.Plugin):
     GUID = 'com.meetme.newrelic_varnish_agent'
 
     METRICS = {
-        'client_conn': ('Totals/Client/Connections', 'gauge', 'count'),
-        'client_drop': ('Totals/Client/Drops', 'gauge', 'count'),
-        'client_req': ('Totals/Client/Requests', 'gauge', 'count'),
-        'cache_hit': ('Totals/Cache/Hits', 'gauge', 'count'),
-        'cache_hitpass': ('Totals/Cache/Hitpasses', 'gauge', 'count'),
-        'cache_miss': ('Totals/Cache/Misses', 'gauge', 'count'),
+        'client_conn': ('Totals/Client/Connections', 'gauge', ''),
+        'client_drop': ('Totals/Client/Drops', 'gauge', ''),
+        'client_req': ('Totals/Client/Requests', 'gauge', ''),
+        'cache_hit': ('Totals/Cache/Hits', 'gauge', ''),
+        'cache_hitpass': ('Totals/Cache/Hitpasses', 'gauge', ''),
+        'cache_miss': ('Totals/Cache/Misses', 'gauge', ''),
     }
 
     def poll(self):
@@ -54,8 +54,8 @@ class Varnish(base.Plugin):
             for line in matches:
                 key, value = line[:2]
                 if key in self.METRICS.keys():
-                    metric, nature, unit = self.METRICS[key] 
+                    metric, nature, unit = self.METRICS[key]
                     method = 'add_{0}_value'.format(nature)
-                    getattr(self, method)(metric, unit, value) 
+                    getattr(self, method)(metric, unit, int(value))
         else:
             LOGGER.debug('Stats output: %r', data)
